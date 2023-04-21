@@ -18,8 +18,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: TEST
-        run: echo "${{ env.SERVER_USERNAME }}@${{ env.SERVER_IP }} "docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}"
+      - name: Test
+        run: echo "docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}"
 
       - name: Deploy
         uses: appleboy/ssh-action@master
