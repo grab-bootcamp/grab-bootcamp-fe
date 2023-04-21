@@ -18,6 +18,7 @@
 ```
   git add .
   git commit -m "commit message"
+  git tag release-*.*.*
   git push origin release-*.*.*
 ```
 
