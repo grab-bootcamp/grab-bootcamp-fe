@@ -9,6 +9,8 @@ env:
   IMAGE_NAME: "grab-bootcamp-fe"
   SERVER_IP: ${{ secrets.SERVER_IP }}
   CONTAINER_NAME: "grab-bootcamp-fe"
+  SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
   
 jobs:
 
