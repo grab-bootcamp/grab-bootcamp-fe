@@ -34,4 +34,4 @@ jobs:
             sudo docker pull ${{ env.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
             sudo docker stop ${{ env.CONTAINER_NAME }} || true
             sudo docker rm ${{ env.CONTAINER_NAME }} || true
-            sudo docker run -d --name ${{ env.CONTAINER_NAME }} -p 3000:3000 ${{ env.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            sudo docker run -d --name ${{ env.CONTAINER_NAME }} -p 5173:5173 ${{ env.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
