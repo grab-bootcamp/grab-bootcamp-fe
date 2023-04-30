@@ -5,7 +5,6 @@ import { Layout } from "antd";
 import { AppHeader, AppFooter } from "./components";
 import { gql, useQuery } from "@apollo/client";
 import { useStateStore } from "./store";
-import { useEffect } from "react";
 import { LoadingPage } from "./pages/loading.page";
 
 const { Content } = Layout;
