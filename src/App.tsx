@@ -1,6 +1,5 @@
 import { BrowserRouter, RouteObject, useRoutes } from "react-router-dom"
 import { HomePage, NotFoundPage } from "./pages";
-import 'antd/dist/reset.css'
 import { Layout } from "antd";
 import { AppHeader, AppFooter } from "./components";
 import { gql, useQuery } from "@apollo/client";
@@ -19,7 +18,7 @@ const GET_ALL_FORESTS = gql`
   }`
 
 function App() {
-  const { setForest } = useStateStore(state => ({ setForest: state.setForest }));
+  const { setForest } = useStateStore(state => ({ setForest: state.setForests }));
   const { loading, error } = useQuery(GET_ALL_FORESTS, {
     onCompleted: (data) => {
       setForest(data.forest);

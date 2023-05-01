@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const AppHeader = () => {
   return (
-    <Header className='bg-white border-b-2 shadow-md'>
+    <Header className='bg-white border-b shadow-md'>
       <Link to='/'>
         <motion.div
           whileHover={{ scale: 1.05 }}
