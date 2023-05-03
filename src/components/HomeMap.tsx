@@ -1,6 +1,8 @@
 import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api"
 import { useStateStore } from "../store"
-import { Spin } from "antd"
+import { nanoid } from "nanoid"
+import { Skeleton } from "antd"
+import { useCallback } from "react"
 
 export const HomeMap = () => {
   const { isLoaded } = useJsApiLoader({
@@ -14,7 +16,13 @@ export const HomeMap = () => {
     setActiveForestIndex: state.setActiveForestIndex
   }))
 
-  if (!isLoaded) return <Spin tip="Loading" />
+  const onMarkerClick = useCallback((index: number | null) => {
+    if (index === null || forests[index]) {
+      setActiveForestIndex(index)
+    }
+  }, [setActiveForestIndex])
+
+  if (!isLoaded) return <Skeleton.Image active className="w-full h-full" />
 
   return (
     <GoogleMap
@@ -35,7 +43,8 @@ export const HomeMap = () => {
         </InfoWindowF>)}
       {forests.map((forest, index) => (
         <MarkerF
-          onClick={() => setActiveForestIndex(index)}
+          key={nanoid()}
+          onClick={() => onMarkerClick(index)}
           position={{ lat: forest.mCoordinates.lat, lng: forest.mCoordinates.lng }}
         />
       ))}
