@@ -2,19 +2,29 @@ import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-m
 import { useStateStore } from "../store"
 import { nanoid } from "nanoid"
 import { Skeleton } from "antd"
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 
 export const HomeMap = () => {
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
   })
 
-  const { forests, activeForestIndex, setActiveForestIndex } = useStateStore(state => ({
+  const {
+    center,
+    zoom,
+    forests,
+    activeForestIndex,
+    setActiveForestIndex
+  } = useStateStore(state => ({
+    center: state.center,
+    zoom: state.zoom,
     forests: state.forests,
     activeForestIndex: state.activeForestIndex,
     setActiveForestIndex: state.setActiveForestIndex
   }))
+
+  const [_, setMap] = useState<google.maps.Map | null>(null)
 
   const onMarkerClick = useCallback((index: number | null) => {
     if (index === null || forests[index]) {
@@ -22,13 +32,23 @@ export const HomeMap = () => {
     }
   }, [setActiveForestIndex])
 
+  const onLoad = useCallback((map: google.maps.Map) => {
+    setMap(map)
+  }, [])
+
+  const onUnmount = useCallback(() => {
+    setMap(null)
+  }, [])
+
   if (!isLoaded) return <Skeleton.Image active className="w-full h-full" />
 
   return (
     <GoogleMap
       id="list-forest-map"
-      zoom={2}
-      center={{ lat: 0, lng: 0 }}
+      zoom={zoom}
+      center={center}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
       mapContainerClassName="grab-google-map"
     >
       {activeForestIndex !== null && (
