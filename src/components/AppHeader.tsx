@@ -1,11 +1,12 @@
-import { Header } from 'antd/lib/layout/layout';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Header } from "antd/lib/layout/layout";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { AppHeaderNotification } from ".";
 
 export const AppHeader = () => {
   return (
-    <Header className='bg-white border-b shadow-md'>
-      <Link to='/'>
+    <Header className="bg-white border-b shadow-md">
+      <Link to="/">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -15,7 +16,9 @@ export const AppHeader = () => {
           <h3 className="text-gray-700 font-bold leading-8 text-xl">PreFire</h3>
         </motion.div>
       </Link>
-      <h3 className="text-gray-700 float-right">Menu here</h3>
+      <div className="float-right">
+        <AppHeaderNotification />
+      </div>
     </Header>
   )
 }
