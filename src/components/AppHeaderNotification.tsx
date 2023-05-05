@@ -21,7 +21,7 @@ const GET_NOTIFICATION = gql`
 `
 
 export const AppHeaderNotification = () => {
-  const [listNotificationVisible, setListNotificationVisible] = useState(true);
+  const [listNotificationVisible, setListNotificationVisible] = useState(false);
   const [hasMoreNotification, setHasMoreNotification] = useState(true);
 
   const {
