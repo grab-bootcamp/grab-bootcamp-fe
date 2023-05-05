@@ -8,5 +8,10 @@ export default defineConfig({
     strictPort: true,
     port: 5173,
   },
+  preview: {
+    host: true, // needed for the Docker Container port mapping to work
+    strictPort: true,
+    port: 5173,
+  },
   plugins: [react()],
 })
