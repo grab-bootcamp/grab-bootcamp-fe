@@ -54,6 +54,7 @@ export const AppHeaderNotificationMenu = (props: IAppHeaderNotificationMenuProps
               onClick={() => {
                 if (item.mForestId) {
                   setActiveForestIndexByForestId(item.mForestId);
+                  props.setVisibility(false);
                 }
               }}
             >

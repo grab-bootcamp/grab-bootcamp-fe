@@ -13,7 +13,7 @@ export const AppHeader = () => {
           transition={{ ease: "easeOut", duration: 0.2 }}
           className="flex float-left my-4 space-x-1" >
           <img className="h-8" title="Forest Fire Prediction Logo" src="/logo.svg" />
-          <h3 className="text-gray-700 font-bold leading-8 text-xl">PreFire</h3>
+          <h1 className="text-gray-700 font-bold leading-8 text-xl">PreFire</h1>
         </motion.div>
       </Link>
       <div className="float-right">
