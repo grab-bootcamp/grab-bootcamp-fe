@@ -12,5 +12,6 @@ export interface IStatisticData {
   mHumidity: number;
   mWindSpeed: number;
   mRainfall: number;
+  mFireRisk?: number;
   mCreatedAt: Date;
 }

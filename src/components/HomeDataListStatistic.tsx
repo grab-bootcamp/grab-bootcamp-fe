@@ -71,7 +71,7 @@ export const HomeDataListStatistic = (props: IHomeDataListStatisticProps) => {
       setData([]);
       setHasMore(true);
     }
-  }, [activeForestIndex])
+  }, [activeForestIndex, props.filterRange])
 
   if (activeForestIndex === null) return null;
 

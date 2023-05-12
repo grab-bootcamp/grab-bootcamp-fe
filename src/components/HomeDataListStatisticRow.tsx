@@ -21,8 +21,8 @@ export const HomeDataListStatisticRow = ({ data }: { data: IStatisticData }) => 
             <small>{data.mCondition.text}</small>
           </div>
           <Space direction="vertical">
-            <Tooltip title="Forest fire probability">
-              <h5 className="text-xl md:text-3xl mb-0">N/A</h5>
+            <Tooltip title="Forest fire probability" arrow>
+              <h5 className="text-xl md:text-3xl mb-0">{data.mFireRisk ?? 'N/A'}</h5>
             </Tooltip>
           </Space>
         </div>
