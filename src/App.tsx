@@ -71,7 +71,7 @@ function App() {
       })
     }
 
-    // fetchSee();
+    fetchSee();
   }, [])
 
   const fireNotification = (notification: INotification) => {
