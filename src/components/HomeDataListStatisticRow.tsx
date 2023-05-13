@@ -11,18 +11,18 @@ export const HomeDataListStatisticRow = ({ data }: { data: IStatisticData }) => 
     <div className="flex flex-wrap items-center hover:bg-slate-200 space-y-2">
       <small className="w-full ml-4 mt-2 text-slate-500">{dayjs(data.mCreatedAt).format("DD/MM/YYYY HH:mm")}</small>
       <img
-        src={data.mCondition.icon}
-        alt={data.mCondition.text}
+        src={data.mCondition.icon ?? "//placehold.co/64"}
+        alt={data.mCondition.text ?? 'N/A'}
       />
       <div className="flex-grow pr-9">
         <div className="flex justify-between">
           <div>
-            <h5 className="text-3xl md:text-4xl font-bold mb-0">{data.mTemperature}° C</h5>
-            <small>{data.mCondition.text}</small>
+            <h5 className="text-3xl md:text-4xl font-bold mb-0">{Math.round((data.mTemperature + Number.EPSILON) * 10) / 10}° C</h5>
+            <small>{data.mCondition.text ?? 'N/A'}</small>
           </div>
           <Space direction="vertical">
             <Tooltip title="Forest fire probability" arrow>
-              <h5 className="text-xl md:text-3xl mb-0">{data.mFireRisk ?? 'N/A'}</h5>
+              <h5 className="text-xl md:text-3xl mb-0">{data.mFireRisk ? Math.round((data.mFireRisk + Number.EPSILON) * 100) / 100 : 'N/A'}</h5>
             </Tooltip>
           </Space>
         </div>
