@@ -12,7 +12,7 @@ interface IHomeDataListStatisticProps {
 }
 
 const GET_STATISTICS = gql`
-  query GetStatistic($forestId: Float!, $fromDate: DateTime!, $toDate: DateTime!, $cursor: Float = null, $size: Float = 10) {
+  query GetStatistic($forestId: Float!, $fromDate: DateTime!, $toDate: DateTime!, $cursor: DateTime = null, $size: Float = 10) {
     statistic(
       forestId: $forestId
       fromDate: $fromDate
@@ -20,16 +20,18 @@ const GET_STATISTICS = gql`
       cursor: $cursor,
       size: $size
     ) {
-      mId
       mForestId
       mFFMC
       mDC
       mDMC
+      mBUI
+      mFWI
       mISI
       mTemperature
       mWindSpeed
       mHumidity
       mRainfall
+      mFireRisk
       mCondition
       mCreatedAt
     }
@@ -89,12 +91,12 @@ export const HomeDataListStatistic = (props: IHomeDataListStatisticProps) => {
               forestId: +forests[activeForestIndex].mId,
               fromDate: props.filterRange[0],
               toDate: props.filterRange[1],
-              cursor: +data[data.length - 1]?.mId,
+              cursor: data[data.length - 1]?.mCreatedAt,
             }
           })
         }}
         hasMore={hasMore}
-        loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+        loader={<Skeleton className='px-2' avatar paragraph={{ rows: 1 }} active />}
         scrollableTarget="data-statistic-list"
       >
         <List
