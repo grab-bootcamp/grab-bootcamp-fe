@@ -6,6 +6,7 @@ import { classNames, mapNotificationSeverityToBgColor, mapNotificationTypeToIcon
 import { useEffect, useRef } from "react";
 import { useClickedOutsideComponent } from "../hooks";
 import { useStateStore } from "../store";
+import { useNavigate } from "react-router-dom";
 
 interface IAppHeaderNotificationMenuProps {
   className?: string;
@@ -18,6 +19,7 @@ interface IAppHeaderNotificationMenuProps {
 }
 
 export const AppHeaderNotificationMenu = (props: IAppHeaderNotificationMenuProps) => {
+  const navigate = useNavigate();
   const { setActiveForestIndexByForestId } = useStateStore(state => ({
     setActiveForestIndexByForestId: state.setActiveForestIndexByForestId
   }))
@@ -55,6 +57,7 @@ export const AppHeaderNotificationMenu = (props: IAppHeaderNotificationMenuProps
                 if (item.mForestId) {
                   setActiveForestIndexByForestId(item.mForestId);
                   props.setVisibility(false);
+                  navigate("/");
                 }
               }}
             >
