@@ -33,7 +33,7 @@ export const AppHeaderNotificationMenu = (props: IAppHeaderNotificationMenuProps
 
   return (
     <div ref={wrapperRef} id="infinite-scrollable-div" className={
-      classNames(props.className, "z-10 w-screen md:w-96 fixed left-0 md:absolute md:-left-21.25rem overflow-auto")
+      classNames(props.className, "z-10 w-screen md:w-96 fixed left-0 md:absolute md:-left-21.25rem overflow-auto shadow")
     }
       style={props.style}
     >

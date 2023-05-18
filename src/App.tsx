@@ -1,5 +1,5 @@
 import { BrowserRouter, RouteObject, useRoutes } from "react-router-dom"
-import { HomePage, NotFoundPage } from "./pages";
+import { HomePage, NotFoundPage, UnsubscribePage } from "./pages";
 import { Button, Layout, Space, message, notification } from "antd";
 import { AppHeader, AppFooter } from "./components";
 import { gql, useQuery } from "@apollo/client";
@@ -130,6 +130,7 @@ function AppRouter() {
     {
       children: [
         { element: <HomePage />, index: true },
+        { element: <UnsubscribePage />, path: 'unsubscribe/:disposeToken' },
         { element: <NotFoundPage />, path: '*' },
       ],
     },
