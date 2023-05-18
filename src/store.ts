@@ -28,12 +28,12 @@ interface IState {
 }
 
 const FOREST_ZOOM_VALUE = {
-  DEFAULT: 2,
-  ON_ACTIVE: 12 
+  DEFAULT: 5,
+  ON_ACTIVE: 8
 };
 
 const CENTER_VALUE = {
-  DEFAULT: { lat: 0, lng: 0 }
+  DEFAULT: { lat: 38.7742569, lng: -0.8436028 }
 }
 
 export const useStateStore = create(

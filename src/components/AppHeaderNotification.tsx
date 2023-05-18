@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { AppHeaderNotificationMenu } from ".";
 import { gql, useLazyQuery } from "@apollo/client";
 
+const PAGE_SIZE = 6;
+
 const GET_NOTIFICATION = gql`
   query GetNotification($cursor: Float = null, $size: Float = 6) {
     notification(cursor: $cursor, size: $size){
@@ -38,7 +40,7 @@ export const AppHeaderNotification = () => {
 
   const [fetchData, { loading }] = useLazyQuery(GET_NOTIFICATION, {
     onCompleted(data) {
-      if (data.notification.length === 0) {
+      if (data.notification.length < PAGE_SIZE) {
         setHasMoreNotification(false);
         return;
       }
@@ -50,6 +52,7 @@ export const AppHeaderNotification = () => {
     fetchData({
       variables: {
         cursor: +notifications[notifications.length - 1]?.mId,
+        size: PAGE_SIZE,
       }
     });
   }, [])
@@ -78,6 +81,7 @@ export const AppHeaderNotification = () => {
         fetchMore={() => {
           fetchData({
             variables: {
+              size: PAGE_SIZE,
               cursor: +notifications[notifications.length - 1]?.mId,
             }
           })

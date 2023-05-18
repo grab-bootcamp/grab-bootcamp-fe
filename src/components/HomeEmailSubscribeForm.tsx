@@ -19,7 +19,7 @@ export const HomeEmailSubscribeForm = (props: IHomeEmailSubscribeFormProps) => {
   }
   return (
     <div
-      className={classNames(props.className, "mx-auto mt-16")}
+      className={classNames(props.className, "mx-auto mt-12")}
     >
       <h2 className="text-xl font-semibold text-center">Subscribe to The Forest Fire Prediction System</h2>
       <p className="text-center">Subscribe to get the lastest warning of forestfires </p>

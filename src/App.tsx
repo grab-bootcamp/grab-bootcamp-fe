@@ -19,6 +19,8 @@ const GET_ALL_FORESTS = gql`
       mId
       mName
       mCoordinates
+      mImage
+      mDescription
     }
   }`
 

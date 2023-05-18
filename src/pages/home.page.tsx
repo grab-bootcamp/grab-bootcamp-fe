@@ -1,6 +1,6 @@
-import { Button, Space } from "antd"
+import { Button, Select, Space } from "antd"
 import { HomeDataFilter, HomeDataList, HomeMap, HomeEmailSubscribeForm } from "../components"
-import { UndoOutlined } from "@ant-design/icons"
+import { SearchOutlined, UndoOutlined } from "@ant-design/icons"
 import { useStateStore } from "../store"
 import { useEffect, useState } from "react"
 import dayjs from "dayjs"
@@ -43,12 +43,26 @@ export const HomePage = () => {
     <>
       <div className="flex flex-wrap lg:flex-nowrap space-y-3 lg:space-x-3 lg:space-y-0">
         <Space direction="vertical" className="w-full lg:w-3/5 bg-white rounded shadow p-3">
-          <Button onClick={resetMap}>
-            <Space>
-              <UndoOutlined className="line-clamp-1" />
-              Reset Map
-            </Space>
-          </Button>
+          <div className="flex space-x-5">
+            <Button onClick={resetMap}>
+              <Space>
+                <UndoOutlined className="line-clamp-1" />
+                Reset Map
+              </Space>
+            </Button>
+            <Select
+              showSearch
+              value={activeForestIndex}
+              className="block w-full"
+              suffixIcon={<SearchOutlined />}
+              placeholder="Search a forest"
+              onChange={(value: number) => setActiveForestIndexByForestId(forests[value].mId)}
+              options={forests.map((forest, index) => ({
+                label: forest.mName,
+                value: index
+              }))}
+            />
+          </div>
           <HomeMap />
         </Space>
         <div className="w-full lg:w-2/5 space-y-3">
@@ -61,7 +75,7 @@ export const HomePage = () => {
             <HomeDataList filterRange={currentRange} />
           </Space>
         </div>
-      </div>
+      </div >
       <HomeEmailSubscribeForm className="bg-white rounded shadow p-6 max-w-lg" />
     </>
   )

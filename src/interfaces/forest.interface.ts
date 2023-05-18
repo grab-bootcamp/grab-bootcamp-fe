@@ -5,4 +5,6 @@ export interface IForest {
     lat: number;
     lng: number;
   };
+  mDescription: string;
+  mImage: string
 }

@@ -1,8 +1,9 @@
-import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api"
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api"
 import { useStateStore } from "../store"
 import { nanoid } from "nanoid"
 import { Skeleton } from "antd"
 import { useCallback, useState } from "react"
+import { HomeMapInfoWindow } from "./HomeMapInfoWindow"
 
 export const HomeMap = () => {
   const { isLoaded } = useJsApiLoader({
@@ -52,15 +53,11 @@ export const HomeMap = () => {
       mapContainerClassName="grab-google-map"
     >
       {activeForestIndex !== null && (
-        <InfoWindowF
+        <HomeMapInfoWindow
+          forest={forests[activeForestIndex]}
           onCloseClick={() => setActiveForestIndex(null)}
-          position={{ lat: forests[activeForestIndex].mCoordinates.lat, lng: forests[activeForestIndex].mCoordinates.lng }}
-        >
-          <div>
-            <h1>{forests[activeForestIndex].mName}</h1>
-            <p>({forests[activeForestIndex].mCoordinates.lat},{forests[activeForestIndex].mCoordinates.lng})</p>
-          </div>
-        </InfoWindowF>)}
+        />
+      )}
       {forests.map((forest, index) => (
         <MarkerF
           key={nanoid()}

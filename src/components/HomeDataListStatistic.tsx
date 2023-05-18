@@ -11,6 +11,8 @@ interface IHomeDataListStatisticProps {
   filterRange: [Date, Date];
 }
 
+const PAGE_SIZE = 10;
+
 const GET_STATISTICS = gql`
   query GetStatistic($forestId: Float!, $fromDate: DateTime!, $toDate: DateTime!, $cursor: DateTime = null, $size: Float = 10) {
     statistic(
@@ -49,7 +51,7 @@ export const HomeDataListStatistic = (props: IHomeDataListStatisticProps) => {
 
   const [fetchData] = useLazyQuery<{ statistic: IStatisticData[] }>(GET_STATISTICS, {
     onCompleted(data) {
-      if (data.statistic.length === 0) {
+      if (data.statistic.length < PAGE_SIZE) {
         setHasMore(false);
         return;
       }
@@ -64,11 +66,12 @@ export const HomeDataListStatistic = (props: IHomeDataListStatisticProps) => {
           forestId: +forests[activeForestIndex].mId,
           fromDate: props.filterRange[0],
           toDate: props.filterRange[1],
+          size: PAGE_SIZE,
         }
       })
     }
 
-    // Reset data when change forest
+    // Reset data when changing forest
     return () => {
       setData([]);
       setHasMore(true);
@@ -92,6 +95,7 @@ export const HomeDataListStatistic = (props: IHomeDataListStatisticProps) => {
               fromDate: props.filterRange[0],
               toDate: props.filterRange[1],
               cursor: data[data.length - 1]?.mCreatedAt,
+              size: PAGE_SIZE,
             }
           })
         }}
