@@ -6,8 +6,8 @@ export interface IStatisticData {
   };
   mTemperature: number;
   mFFMC: number;
-  mDMC: number;
-  mDC: number;
+  mBUI: number;
+  mFWI: number;
   mISI: number;
   mHumidity: number;
   mWindSpeed: number;
